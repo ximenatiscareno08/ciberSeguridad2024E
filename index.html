@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registro de tarjeta</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+  <center>
+    <div class="container">
+      <div class="row" style="padding: 5%;">
+        <h3>Registro de usuario</h3>
+        <div class="col-8">
+          <label for="nombre">Nombre completo</label>
+          <input type="text"  oninput="ingresarMayuscula(event);" id="nombre" class="form-control">
+        </div>
+       
+        <div class="col-8">
+          <label for="apellidos">Apellidos</label>
+          <input type="text"  oninput="ingresarMayuscula(event);"  id="apellidos" class="form-control">
+        </div>
+        <div class="col-8">
+          <label for="edad">Edad</label>
+          <input type="text" id="edad" class="form-control">
+        </div>
+      
+        <div class="col-8">
+          <label for="correo">Correo electrónico</label>
+          <input type="text" id="correo" class="form-control">
+        </div>
+        <div class="col-8">
+          <label for="contraseña">Contraseña</label>
+          <input type="text" oninput="ingresarMayuscula(event);" id="contraseña" class="form-control">
+        </div>
+     
+      </div>
+      <div class="row">
+        <div class="col">
+          <button id="btnEnviar">Registrar</button>
+        </div>
+      </div>
+    </div>
+  </center>
+</body>
+<script>
+  function enviarDatos() {
+        var nombre = $("#nombre").val();
+        var apellidos = $("#apellidos").val();
+        var edad = $("#edad").val();
+        var correo = $("#correo").val();
+        var contraseña = $("#contraseña").val();
+       
+
+        var datos = {
+            nombre: nombre,
+            apellidos : apellidos ,
+            edad : edad ,
+            correo:  correo,
+            contraseña: contraseña
+        };
+    
+        $.ajax({
+            type: "POST",
+            url: "registroTarjeta.php",
+            data: datos,
+            success: function(response) {
+                console.log(response);
+                if (response === "Datos recibidos correctamente y guardados en la base de datos") {
+                    if ("Notification" in window) {
+                        Notification.requestPermission().then(function(permission) {
+                            if (permission === "granted") {
+                                new Notification("¡Registro exitoso!", {
+                                    body: "Los datos han sido guardados en la base de datos."
+                                });
+                            }
+                        });
+                    }
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+    }
+    
+    $("#btnEnviar").click(function() {
+        enviarDatos();
+    });
+</script>
+
+</html>

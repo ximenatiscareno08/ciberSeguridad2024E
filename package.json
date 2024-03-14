@@ -1,0 +1,14 @@
+{
+  "name": "ciberseguridad2024e",
+  "version": "1.0.0",
+  "description": "Este proyecto es para hacer pruebas de la materia de ciberseguridad",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ximena Tiscareno",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.3"
+  }
+}
