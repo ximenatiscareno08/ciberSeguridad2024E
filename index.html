@@ -4,7 +4,80 @@
   <meta charset="UTF-8">
   <title>Registro de tarjeta</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <link rel="stylesheet" href="estilo.css">
+  <style>
+    /* Reset de estilos */
+    * {
+        margin: 0;
+        padding: 0;
+        
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #ffa8d9;
+    }
+    
+    .container {
+        background-color: #ffe0ff;
+        padding: 20px;
+        border-radius: 10px;
+        width: 400px; /* Ancho del contenedor */
+        margin: 0 auto; /* Centrar el contenedor horizontalmente */
+    }
+    
+    .row {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .col-8 {
+        margin-bottom: 10px;
+    }
+    
+    h3 {
+        font-weight: bold; /* Añade negrita solo a los títulos */
+        text-align: center; /* Centrar el texto */
+        margin-bottom: 10px; /* Agrega un espacio después del título */
+    }
+    
+    label {
+        margin-bottom: 5px;
+        text-align: center; /* Centrar el texto */
+    }
+    
+    input[type="text"],
+    input[type="date"],
+    input[type="number"] {
+        width: 100%;
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        transition: border-color 0.3s;
+    }
+    
+    input[type="text"]:focus,
+    input[type="date"]:focus,
+    input[type="number"]:focus {
+        border-color: dodgerblue;
+        outline: none;
+    }
+    
+    button {
+        padding: 10px 20px;
+        background-color: rgba(75, 8, 46, 0.611);
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    
+    button:hover {
+        background-color: #0073e6;
+    }
+  </style>
 </head>
 <body>
   <center>
@@ -39,7 +112,28 @@
       </div>
     </div>
 
-    <script src="script.js"></script>
+    
   </center>
+  <script>
+    // Tu código JavaScript aquí
+    $(document).ready(function() {
+        $("#btnEnviar").click(function() {
+            var nombre = $("#nombre").val();
+            var apellidos = $("#apellidos").val();
+            var edad = $("#edad").val();
+            var correo = $("#correo").val();
+            var contraseña = $("#contraseña").val();
+
+            $.ajax({
+                type: "POST",
+                url: "registro.php",
+                data: { nombre: nombre, apellidos: apellidos, edad: edad, correo: correo, contraseña: contraseña },
+                success: function(response) {
+                    alert(response);
+                }
+            });
+        });
+    });
+  </script>
 </body>
 </html>
