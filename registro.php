@@ -1,6 +1,6 @@
 <?php
 $host = "192.168.100.18";
-$port = "21";
+$port = "5433";
 $dbname = "encriptado";
 $user = "postgres";
 $password = "123";
