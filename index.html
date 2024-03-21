@@ -161,7 +161,8 @@ pg_close($conexion);
 
             $.ajax({
                 type: "POST",
-                url: "registro.php",
+                url: "<?php echo $_SERVER['PHP_SELF']; ?>",
+
                 data: { nombre: nombre, apellidos: apellidos, edad: edad, correo: correo, contraseña: contraseña },
                 success: function(response) {
                     alert(response);
