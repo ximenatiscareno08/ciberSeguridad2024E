@@ -84,6 +84,7 @@
     <div class="container">
       <div class="row" style="padding: 5%;">
         <h3>Registro de usuario</h3>
+        <form id="userForm">
         <div class="col-8">
           <label for="nombre">Nombre completo</label>
           <input type="text" id="nombre" class="form-control">
@@ -98,44 +99,14 @@
           <input type="text" id="edad" class="form-control">
         </div>
       
-        <div class="col-8">
-          <label for="correo">Correo electrónico</label>
-          <input type="text" id="correo" class="form-control">
-        </div>
-        <div class="col-8">
-          <label for="contraseña">Contraseña</label>
-          <input type="text" id="contraseña" class="form-control">
-        </div>
-        <div class="col">
-          <button id="btnEnviar">Registrar</button>
-        </div>
+        
+      </form>
       </div>
     </div>
 
     
   </center>
   
-  <script>
-    // Tu código JavaScript aquí
-    $(document).ready(function() {
-        $("#btnEnviar").click(function() {
-            var nombre = $("#nombre").val();
-            var apellidos = $("#apellidos").val();
-            var edad = $("#edad").val();
-            var correo = $("#correo").val();
-            var contraseña = $("#contraseña").val();
-
-            $.ajax({
-                type: "POST",
-                url: "https://ciberseguridad2024e-7lf5.onrender.com/registro.php",
-
-                data: { nombre: nombre, apellidos: apellidos, edad: edad, correo: correo, contraseña: contraseña },
-                success: function(response) {
-                    alert(response);
-                }
-            });
-        });
-    });
-  </script>
+  
 </body>
 </html>
